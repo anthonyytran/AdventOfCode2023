@@ -1,4 +1,4 @@
-with open("c:\Users\Anthony\Desktop\AdventOfCode\Day1\day1.txt", "r") as file:
+with open("C:/Users/Anthony/Desktop/AdventOfCode/Day1/day1.txt", "r") as file:
     data = file.read()
     data = data.split("\n")
 
@@ -12,4 +12,4 @@ for line in data:
         number = int(str(numbers[0]) + str(numbers[-1]))
     total += number
 
-print(total)
+print("Part 1: " + str((total)))

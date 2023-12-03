@@ -1,31 +1,32 @@
-def part2(input):
-    calabration = 0
-    for line in input:
-        calabration += decode(wordsToNumbers(line))
-    return calabration
+import re
 
-def decode(s):
-    s = "".join(filter(str.isdigit, s)) #filter returns a filter object, thus needs to be joined
-    s = s[0] + s[-1] 
+DIGIT_VALUES = {
+    'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,
+    'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9
+}
 
-    return int(s)
+with open("C:/Users/Anthony/Desktop/AdventOfCode/Day1/day1.txt", "r") as file:
+    data = file.read()
+    data = data.split("\n")
 
-def wordsToNumbers(s):
+total = 0
 
-    for word, number in wordsNumbers.items():
-        s = s.replace(word, word + number + word) #replaces to word number word so overlapping words are counted correctly
+for line in data:
+    numbers = []
 
-    return s
+    spelled_numbers_pos = {}
+    for digit in DIGIT_VALUES:
+        spelled_numbers_pos[digit] = [m.start()
+                                      for m in re.finditer(digit, line)]
 
-wordsNumbers = {"zero": "0",
-                "one": "1",
-                "two": "2",
-                "three": "3",
-                "four": "4",
-                "five": "5",
-                "six": "6",
-                "seven": "7",
-                "eight": "8",
-                "nine": "9"}
+    for i, char in enumerate(line):
+        if char.isnumeric():
+            numbers.append(int(char))
+        else:
+            for digit, positions in spelled_numbers_pos.items():
+                if i in positions:
+                    numbers.append(DIGIT_VALUES[digit])
 
-print("Part 2: " + str(part2(open("input.txt", "r"))))
+    total += int(str(numbers[0]) + str(numbers[-1]))
+
+print("Part 2:" + (str(total)))
