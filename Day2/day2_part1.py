@@ -1,8 +1,8 @@
+import re
+
 with open("C:/Users/Anthony/Desktop/AdventOfCode/Day2/day2.txt", "r") as file:
     data = file.read()
     data = data.split("\n")
-
-import re
 
 MAXIMUM = {'red': 12, 'green': 13, 'blue': 14}
 
@@ -33,6 +33,5 @@ for line in data:
 
     if not max_reached:
         ans += line_list[0]
-
 
 print(ans)

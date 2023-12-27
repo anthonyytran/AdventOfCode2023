@@ -1,6 +1,6 @@
 import re
 
-with open("C:/Users/Anthony/Desktop/AdventOfCode/Day2/day2.txt", "r") as file:
+with open("C:/Users/Anthony/Desktop/AdventOfCode/Day3/day3.txt", "r") as file:
     data = file.read()
     data = data.split("\n")
 
@@ -32,6 +32,5 @@ for line in data:
         power_set *= min_cubes
 
     ans += power_set
-
 
 print(ans)
